@@ -1,6 +1,5 @@
 package com.example.family_ording.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.family_ording.mapper.UserMapper;
 import com.example.family_ording.model.entity.User;
@@ -17,9 +16,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public User getUserByUsername(String username) {
-        LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(User::getUsername, username);
-        return this.getOne(wrapper);
+        return this.lambdaQuery().eq(User::getUsername, username).one();
     }
 
     @Override
